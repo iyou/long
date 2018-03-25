@@ -1,0 +1,28 @@
+* Special Dates
+** Birthdays
+** Anniversaries
+** Holidays
+
+* Finances
+  :PROPERTIES:
+  :CATEGORIES:
+  :END:
+* DONE Health and Recreation
+  CLOSED: [2018-03-23 Fri 20:21]
+
+* Notes
+
+* Tasks
+
+* Passwords
+
+
+
+* Tasks
+** NEXT t1
+*** t1.1
+*** t1.2
+*** t1.3
+** t2
+** t3
+** NEXT t4
