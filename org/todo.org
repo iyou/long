@@ -1,28 +1,23 @@
+- 加入错误码
+- 返回 user 对象, redis 数据, mysql 数据
+- 加入 redis: 房间 ip 及端口
+
+
+* Tasks
+** 登陆流程
+** 加入大厅流程
+** 加入房间流程
+** 牌局流程
 * Special Dates
 ** Birthdays
 ** Anniversaries
 ** Holidays
 
+You can make words *bold*, /italic/, _underline_, =code= and ~verbatim~, and if you must, +strick-through+.
+
 * Finances
-  :PROPERTIES:
-  :CATEGORIES:
-  :END:
-* DONE Health and Recreation
-  CLOSED: [2018-03-23 Fri 20:21]
+* Health and Recreation
 
 * Notes
 
-* Tasks
-
-* Passwords
-
-
-
-* Tasks
-** NEXT t1
-*** t1.1
-*** t1.2
-*** t1.3
-** t2
-** t3
-** NEXT t4
+* TODO Passwords

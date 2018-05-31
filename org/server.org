@@ -5,45 +5,662 @@
 *** 长链接 - Websocket
 *** 短链接 - Http
 *** 协议内容
-    
+
 ** 数据库
 *** MySql
 *** Redis
-*** 数据表设计 
+*** 数据表设计
 
 ** 测试
 *** 接口测试
 *** 单元测试
 *** 压力测试
 *** 安全测试
-
 *** 集成测试
 
 ** 服务器预警监控
 *** 内存
 *** CPU
-*** 带宽 
-    
+*** 带宽
+
 ** 部署
 *** 自动化部署
 *** 热更新
 *** 可扩展
-    
+
 ** 安全
 *** 用户账号安全
 *** 防 DDOS 攻击
+*** 防 CC 攻击
 *** 充值
 
+
+*** TODO 代码安全
 
 ** 游戏业务逻辑
 *** 棋牌通用逻辑
 *** 具体棋牌逻辑
 
 
-    
-* skynet 服务
 
+* 棋牌游戏服务
+
+** 连接管理
+   - 断线清理数据
 ** 登陆
+*** 手机密码登陆
+*** 手机验证码登陆
+*** 微信登陆
+*** QQ 登陆
+*** 微博登陆
 ** 认证
+   - 密码验证
+   - 长链接认证
+** 协议
+   - 消息推送
+   - 客户端获取消息
 ** 大厅
-** 战斗
+** 战斗房间
+** 数据库
+** 排行榜
+** 比赛
+** 机器人
+** 代码自动部署更新
+
+
+
+* 对接
+** 服务
+** 数据库表格式
+** 短链接流程
+** 长链接流程
+** token 验证
+
+
+
+* 服务端
+** protoloader [u]
+** console
+** debug_console:8000
+
+** centerserver
+*** registerServer
+*** getRoomRateList
+*** getDbServer
+*** getRedisServer
+*** getAllServerList
+*** getLobbyOnlineNum
+*** getRoomOnlineNum
+*** getServerList
+*** keepAlive
+
+** dbserver
+*** launchCommand
+*** launchSQL
+*** getDbConn
+*** exec
+*** freeDbConn
+*** CreateGameLogTableNameDate
+*** CreateGameLogTableNameDate2
+*** CreateGameLogTableNameDate3
+*** CreateGameLogTableNameDate4
+*** CreateGameLogTableNameDate5
+*** CreateGameLogTableNameDate6
+*** CreateGameLogTableNameDate7
+*** CreateGameLogTableNameDate8
+*** CreateGameLogTableNameDate9
+*** SET
+*** serverDown
+*** serverUp
+*** GetConn
+*** Take
+*** Free
+*** SafeCheck
+*** checkTableExists
+*** IfExistsTable
+*** IfExistsGameLogTable
+*** createSubTableByMonth
+*** getNewSpreaderInfo
+*** getSystemConfig
+*** readUserItem
+*** getUserInfosByIds
+*** getItem
+*** getUesrAppStoreAllBill
+*** getUserAppStoreBill
+*** insertAppStoreBill
+*** DeleteEmail
+*** UpdateEmailState
+*** InsertOnlineNumLog
+*** updateMaxOnlineNum
+*** updateSpreaderInfo
+*** updateNewSpreaderInfo
+*** getUserInfo
+*** updateSystem
+*** createTableFromTemp
+*** createSubTable
+
+** login
+
+*** register_gate
+*** getRedisServer
+*** getSqlServer
+*** getLobbyServer
+*** thirdPartRegLogin
+*** clientMsg
+*** serverDown
+*** serverUp
+*** init
+*** httpArgsSafeCheck
+***
+** gameroom:9001 - open maxClient = 10000, rate = 500
+** gameroom:9002 - open maxClient = 10000, rate = 500
+** gate:8888 - open maxClient = 10000
+
+* Tasks on <2018-03-28 Wed>
+** skynet 进程及各自的服务关系
+** 字牌规则
+** 开发沟通流程 - 美术 策划 运营 程序 测试
+*** 最复杂的需求，涉及到最多人员
+*** 最简单的需求，最少人员
+** 服务器设计
+*** 版本升级步骤
+*** 数据库连接，读取数据，稳定性，备份
+*** 生产环境常见问题及解决方法
+
+
+* 服务端
+** skynet 进程
+
+*** config_center
+**** console
+**** center_service
+***** registerServer
+***** getRoomRateList
+***** getDbServer
+***** getRedisServer
+***** getAllServerList
+***** getLobbyOnlineNum
+***** getRoomOnlineNum
+***** getServerList
+***** keepAlive
+
+
+*** config_db1
+**** console
+**** db_service
+***** launchCommand
+***** launchSQL
+***** getDbConn
+***** exec
+***** freeDbConn
+***** CreateGameLogTableNameDate
+***** CreateGameLogTableNameDate2
+***** CreateGameLogTableNameDate3
+***** CreateGameLogTableNameDate4
+***** CreateGameLogTableNameDate5
+***** CreateGameLogTableNameDate6
+***** CreateGameLogTableNameDate7
+***** CreateGameLogTableNameDate8
+***** CreateGameLogTableNameDate9
+***** SET
+***** serverDown
+***** serverUp
+***** GetConn
+***** Take
+***** Free
+***** SafeCheck
+***** checkTableExists
+***** IfExistsTable
+***** IfExistsGameLogTable
+***** createSubTableByMonth
+***** getNewSpreaderInfo
+***** getSystemConfig
+***** readUserItem
+***** getUserInfosByIds
+***** getItem
+***** getUesrAppStoreAllBill
+***** getUserAppStoreBill
+***** insertAppStoreBill
+***** DeleteEmail
+***** UpdateEmailState
+***** InsertOnlineNumLog
+***** updateMaxOnlineNum
+***** updateSpreaderInfo
+***** updateNewSpreaderInfo
+***** getUserInfo
+***** updateSystem
+***** createTableFromTemp
+***** createSubTable
+
+
+*** config_db_cache1
+**** console
+**** db_cache
+***** serverDown
+***** serverUp
+***** getRedisServer
+***** getSqlServer
+***** getLobbyServer
+***** clientMsg
+***** getWebclient
+***** getDBConf
+***** getJsonConf
+***** getDbConfByKey
+***** getItemName
+***** getValidAwardJsonConf
+***** getValidJsonConf
+***** updateDbConf
+***** open
+
+
+*** config_db_bg1
+**** console
+**** db_bg
+***** serverDown
+***** serverUp
+***** getRedisServer
+***** getSqlServer
+***** getLobbyServer
+***** clientMsg
+***** getWebclient
+***** open
+***** send2Client
+
+
+*** config_db_log1
+**** console
+**** db_log
+***** launchCommand
+***** launchSQL
+***** getDbConn
+***** exec
+***** freeDbConn
+***** CreateGameLogTableNameDate
+***** CreateGameLogTableNameDate2
+***** CreateGameLogTableNameDate3
+***** CreateGameLogTableNameDate4
+***** CreateGameLogTableNameDate5
+***** CreateGameLogTableNameDate6
+***** CreateGameLogTableNameDate7
+***** CreateGameLogTableNameDate8
+***** CreateGameLogTableNameDate9
+***** SET
+***** serverDown
+***** serverUp
+***** GetConn
+***** Take
+***** Free
+***** SafeCheck
+***** checkTableExists
+***** IfExistsTable
+***** IfExistsGameLogTable
+***** createSubTableByMonth
+***** insertCurrencyLog
+***** insertRedeemCodeLog
+***** insertDbLog
+***** createTableFromTemp
+***** insertLog
+***** createSubTable
+
+
+*** config_redis_1
+**** console
+**** redis_service
+***** OpenRedis
+***** serverDown
+***** serverUp
+***** launchCommand
+***** launchRedisByGlobalConn
+***** launchRedisByGlobalConn1
+***** launchRedisByGlobalConn2
+***** launchRedis
+***** launchRedis1
+***** launchRedis2
+***** execRedis
+***** execRedis1
+***** execRedis2
+***** CloseRedis
+***** CleanRedis
+***** CleanRedis1
+***** CleanRedis2
+***** getDb
+***** exec
+***** execTool
+***** call
+***** Get
+***** Exists
+***** Delete
+***** GetString
+***** GetSet
+***** GetZSet
+***** GetList
+***** SetString
+***** MSet
+***** AddSet
+***** AddList
+***** GetHashMem
+***** ExistsHash
+***** DeleteHash
+***** GetSetLength
+***** ExistsSet
+***** RemoveSet
+***** GetZSetLength
+***** RemoveZSet
+***** RemoveList
+***** SetList
+***** GetListMem
+***** GetListLength
+***** SetKeyExpireTime
+***** SetKeyExpireTime1
+***** GetKeys
+***** GetExpireTime
+***** GetExpireTimeUser
+***** Eval
+***** Incr
+***** Hincrby
+***** DeleteOneUserFromRedis
+***** setUserOnlineState
+***** keepUserRedisKeyAlive
+***** getPlayerLobby
+***** getSystemConf
+***** updateSystem
+***** writeCurOnlineNum
+***** deleteByGlobalConn
+***** setStringByGlobalConn
+***** getStringByGlobalConn
+***** msetByGlobalConn
+***** addSetByGlobalConn
+***** getSetByGlobalConn
+***** IncrByGlobalConn
+***** take
+
+
+*** errlog.config
+**** simpleweb
+
+
+*** config_gate1
+**** console
+**** gate_service
+***** serverDown
+***** serverUp
+***** getRedisServer
+***** getSqlServer
+***** getLobbyServer
+***** httpArgsSafeCheck
+***** clientMsg
+***** getWebclient
+***** func1
+***** open
+***** send2Client
+
+
+*** config_lobby1
+**** console
+**** debug_console
+**** lobby_service
+***** setLockRequest
+***** clientMsg
+***** serverDown
+***** serverUp
+***** getRedisServer
+***** getSqlServer
+***** getAllServerList
+***** getLoginServer
+***** updateOnlineMapInExit
+***** insertOnlineMap
+***** removeOnlineMap
+***** kickOutPlayer
+***** getRankConfig
+***** getMissionConf
+***** getMissionServer
+***** getRankServer
+***** getHttpsServer
+***** getCommonConf
+***** getWebclient
+***** open
+
+
+*** config_login1
+**** console
+**** login_service
+***** register_gate
+***** getRedisServer
+***** getSqlServer
+***** getLobbyServer
+***** thirdPartRegLogin
+***** clientMsg
+***** serverDown
+***** serverUp
+***** httpArgsSafeCheck
+
+***** syncRedisDate
+***** checkRegisterAward
+***** createWxRegisterData
+***** weixinLogin
+
+
+*** config_mall
+
+**** console
+
+**** mall_service
+
+***** getMallTable
+
+***** getmallSpecialLogTable
+
+***** getMallUserLogTable
+
+***** getSegmentStr
+
+***** isGoodsValid
+
+***** isRechargeValid
+
+***** getRechargeValid
+
+***** checkMallBuyTime
+
+***** checkMallValid
+
+***** getFirstBuyRoomCardValid
+
+***** serverDown
+
+***** serverUp
+
+***** getRedisServer
+
+***** getSqlServer
+
+***** getLobbyServer
+
+***** clientMsg
+
+***** prepareMallList
+
+***** updateRoomCardPurchaseLog_glzp
+
+***** extendHandly_glzp
+
+***** extendHandly_phz
+
+***** updateResult_glzp
+
+***** updateResult_phz
+
+***** processStatus
+
+***** open
+
+
+*** config_email
+
+**** console
+
+**** email_service
+
+***** serverDown
+
+***** serverUp
+
+***** getRedisServer
+
+***** getSqlServer
+
+***** getLobbyServer
+
+***** clientMsg
+
+***** open
+
+***** getEmailTableName
+
+***** syncEmail
+
+***** checkCanChangeGoldCoin
+
+
+*** config_rank
+
+**** protoloader
+
+**** console
+
+**** rank_service
+
+***** serverDown
+
+***** serverUp
+
+***** getRedisServer
+
+***** getSqlServer
+
+***** getLobbyServer
+
+***** getRankConfig
+
+***** clientMsg
+
+***** setUserRankingValue
+
+***** setUserRanking
+
+***** getTopRanking
+
+***** open
+
+***** send2Client
+
+
+*** config_https
+
+**** console
+
+**** https_service
+
+***** serverDown
+
+***** serverUp
+
+***** getRedisServer
+
+***** getSqlServer
+
+***** getLobbyServer
+
+***** clientMsg
+
+***** getWebclient
+
+***** open
+
+***** send2Client
+
+***** getWeiXinErrCode
+
+***** useWeiXinRedPager
+
+***** userShare
+
+***** getUserSpreaderList
+
+***** getUserShareInfo
+
+***** getUserGamesReachAward
+
+
+*** config_outer_web1
+
+
+**** console
+
+**** outer_web_service
+
+***** serverDown
+
+***** serverUp
+
+***** getRedisServer
+
+***** getSqlServer
+
+***** getLobbyServer
+
+***** clientMsg
+
+***** open
+
+***** send2Client
+
+
+*** config_gameManager
+
+**** protoloader
+
+**** console
+
+**** debug_console
+
+**** gameManager
+
+
+***** getRedisServer
+
+***** getSqlServer
+
+***** getMissionServer
+
+***** serverUp
+
+***** serverDown
+
+***** clientMsg
+
+***** open
+
+
+*** config_club
+**** protoloader
+**** console
+**** club_service
+***** serverDown
+***** serverUp
+***** getRedisServer
+***** getSqlServer
+***** clientMsg
+***** open
+
+
+
+* 办公场地
+ [] 15人以下，独立区间
+ [] 水电宽带停车物业等费用
+ [] 最短租期，入驻时间
+ []
+ [] 交通, 公交、地铁
+ [] 周边环境、工作氛围
+ [] 物业管理
+ []

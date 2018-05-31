@@ -1,0 +1,18 @@
+<2018-05-31 Thu> Should download all rows for entire query - users https://github.com/knotel/knotel-app/pull/1645
+<2018-05-30 Wed> Update sign up confirmation screen (see mockups) https://knotelproduct.atlassian.net/browse/MP-186
+
+
+
+<2018-05-08 Tue> Email link visual bug https://trello.com/c/jvVNt080
+<2018-05-09 Wed> Building Info pages https://trello.com/c/aORjETIL
+
+<2018-04-30 一> Dedicated rooms issue https://trello.com/c/6PaVAAm2
+<2018-05-01 Tue> Enrollment email restiling https://trello.com/c/P7oLyVIh
+<2018-05-02 Wed> Enrollment email restiling https://trello.com/c/P7oLyVIh
+<2018-05-03 Thu> Dedicated rooms issue https://trello.com/c/6PaVAAm2
+
+
+<2018-04-24 Tue>  [Requires update] [Admin panel] Return opportunity to create companies from admin panel https://trello.com/c/Ne3XG1vp
+<2018-04-25 Wed>  [Requires update] [Admin panel] Return opportunity to create companies from admin panel https://trello.com/c/Ne3XG1vp
+<2018-04-25 Wed>  [Requires update] [Admin panel] Add email domains feature https://trello.com/c/Mq62RnMh
+<2018-04-26 Thu>  [Requires update] [Admin panel] Add email domains feature https://trello.com/c/Mq62RnMh
