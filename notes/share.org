@@ -1,0 +1,4 @@
+* Javascript/Ecmascript 6 and lodash
+
+
+* Git
